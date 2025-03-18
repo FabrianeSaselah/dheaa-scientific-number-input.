@@ -1,0 +1,50 @@
+import { useState } from "react";
+
+export default function NumberChecker() {
+  const [input, setInput] = useState("1.23e+3");
+  const [isNumber, setIsNumber] = useState(false);
+
+  const checkNumber = () => {
+    const num = parseFloat(input.trim());
+    setIsNumber(!isNaN(num));
+  };
+
+  return (
+    <div className="p-6 max-w-lg mx-auto text-center">
+      {/* Tabel menu */}
+      <table className="w-full border-collapse border border-black mb-6">
+        <tbody>
+          <tr>
+            <td className="border border-black p-2 font-bold">File</td>
+            <td className="border border-black p-2">Edit</td>
+            <td className="border border-black p-2">Run</td>
+            <td className="border border-black p-2">About us</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {/* Input */}
+      <h2 className="text-xl font-semibold mb-2">Input string:</h2>
+      <input
+        type="text"
+        className="w-64 p-2 border border-black text-center"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+
+      {/* Pesan hasil */}
+      <h2 className="text-xl font-semibold mt-4">Message:</h2>
+      <p className="text-lg font-bold mt-2">
+        {isNumber ? "Yes, it is a number" : "No, it is not a number"}
+      </p>
+
+      {/* Tombol cek */}
+      <button 
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        onClick={checkNumber}
+      >
+        Check Number
+      </button>
+    </div>
+  );
+}
